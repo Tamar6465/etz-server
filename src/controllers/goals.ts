@@ -2,6 +2,7 @@ import { Request, Response } from 'express';
 import { pool } from '../db';
 import { v4 as uuidv4 } from 'uuid';
 import { handleError } from '../utils/handleError';
+import { validateFields } from '../utils/validateFields'; // הוספת ייבוא
 
 // אחזור כל היעדים ברמה העליונה (parent_id IS NULL)
 export async function getTopLevelGoals(_req: Request, res: Response) {
@@ -32,6 +33,13 @@ export async function getGoalWithChildren(req: Request, res: Response) {
 // יצירת יעד חדש
 export async function createGoal(req: Request, res: Response) {
     try {
+        // שדות חובה
+        const requiredFields = ['title', 'type', 'goal_type', 'status'];
+        const errors = validateFields(req.body, requiredFields) ?? [];
+        if (errors.length > 0) {
+            return res.status(400).json({ errors });
+        }
+
         const {
             title, description, parent_id, type, weight, target, current,
             goal_type, status, due_date, start_date
@@ -55,6 +63,13 @@ export async function updateGoal(req: Request, res: Response) {
             'title', 'description', 'parent_id', 'type', 'weight', 'target', 'current',
             'goal_type', 'status', 'due_date', 'start_date'
         ];
+
+        const errors = validateFields(req.body, fields);
+        if (errors && errors.length === fields.length) {
+            // אם כל השדות חסרים, אין מה לעדכן
+            return res.status(400).json({ errors: ['No valid fields to update'] });
+        }
+
         const updates = [];
         const values = [];
         let idx = 1;
