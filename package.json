@@ -1,0 +1,29 @@
+{
+  "name": "my-express-app",
+  "version": "1.0.0",
+  "main": "src/app.ts",
+  "scripts": {
+    "start": "ts-node src/app.ts",
+    "build": "tsc",
+    "dev": "ts-node-dev src/app.ts"
+  },
+  "dependencies": {
+    "express": "^4.21.2",
+    "pg": "^8.16.0",
+    "reflect-metadata": "^0.2.2",
+    "typeorm": "^0.3.24"
+  },
+  "devDependencies": {
+    "@types/express": "^4.17.21",
+    "@types/node": "^24.0.0",
+    "@types/pg": "^8.15.4",
+    "ts-node": "^10.4.0",
+    "ts-node-dev": "^1.1.8",
+    "typescript": "^5.8.3"
+  },
+  "license": "MIT",
+  "description": "This is a simple Express application built with TypeScript. It serves as a starting point for building RESTful APIs or web applications using Express.",
+  "keywords": [],
+  "author": "",
+  "type": "commonjs"
+}
