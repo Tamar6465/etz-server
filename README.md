@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 # My Express App
 
 This is a simple Express application built with TypeScript. It serves as a starting point for building RESTful APIs or web applications using Express.
@@ -44,3 +45,6 @@ Contributions are welcome! Please feel free to submit a pull request or open an 
 ## License
 
 This project is licensed under the MIT License. See the LICENSE file for more details.
+=======
+# etz-server
+>>>>>>> cfb3d8798c02498db0923e15d9fb8207b7809213
